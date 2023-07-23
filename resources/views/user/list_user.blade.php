@@ -105,7 +105,7 @@
                         <td class="text-center">{{ $u->role }}</td>
                         <td class="text-center">
                           @if ($u->status == 1) <span class="badge badge-success text-bg-success fw-bold">Aktif</span>
-                          @elseif ($u->status == 2) <span class="badge badge-warning text-bg-danger fw-bold">Tidak Aktif</span>
+                          @elseif ($u->status == 0) <span class="badge badge-warning text-bg-danger fw-bold">Tidak Aktif</span>
                           @endif
                         </td>
                         <td>

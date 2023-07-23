@@ -14,7 +14,7 @@
       </div>
       <div class="form-group">
         <label class="text-start mt-2 mb-2 fw-bold" >Username</label>
-        <input type="email" name="username" class="form-control @error('username') is-invalid @enderror" placeholder="Example: ardiangistin" required value="{{ $u->username }}">
+        <input type="text" name="username" class="form-control @error('username') is-invalid @enderror" placeholder="Example: ardiangistin" required value="{{ $u->username }}">
         @error('username')
           <div class="invalid-feedback">
             {{ $message }}
@@ -46,11 +46,11 @@
             <div class="row input-group">
               <input type="hidden" class="status_data" value="{{ $u->status; }}">
               <div class="col">
-                <input type="radio" name="status" class="btn-active-edit-user" id="edit-input-active" value="1" {{ old('status', $u->status) == 1 ? 'checked' : '' }}>
+                <input type="radio" name="status" class="btn-active-edit-user" id="edit-input-active" value="1">
                 <label class="btn btn-outline-purple w-100" id="label-edit-input-active" for="edit-input-active">Aktif</label>
               </div>
               <div class="col">
-                <input type="radio" name="status" class="btn-active-edit-user" id="edit-input-not-active" value="0" {{ old('status', $u->status) == 0 ? 'checked' : '' }}>
+                <input type="radio" name="status" class="btn-active-edit-user" id="edit-input-not-active" value="0">
                 <label class="btn btn-outline-purple w-100" id="label-edit-input-not-active" for="edit-input-not-active">Tidak Aktif</label>
               </div>
             </div>
@@ -75,7 +75,7 @@
 <script>
   $(document).ready(function() {
     $('.editUser').on('shown.bs.modal', function () {
-      if ($(this).val() == 1) {
+      if ($('.status_data').val() == 1) {
         $("#edit-input-active").prop("checked", true);
         $('#label-edit-input-active').removeClass("btn-outline-purple");
         $('#label-edit-input-active').addClass("btn-purple");

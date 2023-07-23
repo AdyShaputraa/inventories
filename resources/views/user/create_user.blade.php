@@ -13,7 +13,7 @@
       </div>
       <div class="form-group">
         <label class="text-start mt-2 mb-2 fw-bold" >Username</label>
-        <input type="email" name="username" class="form-control @error('username') is-invalid @enderror" placeholder="Example: ardiangistin" required value="{{ old('username') }}">
+        <input type="text" name="username" class="form-control @error('username') is-invalid @enderror" placeholder="Example: ardiangistin" required value="{{ old('username') }}">
         @error('username')
           <div class="invalid-feedback">
             {{ $message }}
