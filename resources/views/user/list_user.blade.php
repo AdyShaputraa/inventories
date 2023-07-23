@@ -120,7 +120,7 @@
                             </form>
                           </div>
 
-                          <div class="modal fade" id="editUser{{ $u->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+                          <div class="modal fade editUser" id="editUser{{ $u->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
                             <div class="modal-dialog modal-lg">
                               <div class="modal-content">
                                 <div class="modal-header">
@@ -226,35 +226,24 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
   $(document).ready(function() {
-    // Mengaktifkan modal saat tombol "Edit" diklik
     $('button[data-toggle="modal"]').click(function() {
       var targetModal = $(this).data('target');
       $(targetModal).modal('show');
     });
 
-    // Menutup modal saat tombol "Batal" diklik
     $('.modal').on('hidden.bs.modal', function() {
-      $(this).find('form')[0].reset(); // Reset formulir dalam modal
+      $(this).find('form')[0].reset();
     });
 
-  });
-</script>
-<script>
-  $(document).ready(function() {
-    // Tangkap event submit form
     $('#filter-form').submit(function(e) {
-      e.preventDefault(); // Menghentikan aksi default form submit
+      e.preventDefault();
 
-      // Ambil nilai status dari elemen select
       var status = $('#status').val();
-
-      // Kirim permintaan Ajax ke endpoint filter
       $.ajax({
         url: $(this).attr('action'),
         type: 'GET',
         data: { status: status },
         success: function(response) {
-          // Perbarui tampilan tabel dengan hasil respons
           $('#user-table').html(response);
         },
         error: function(xhr, status, error) {
@@ -264,7 +253,6 @@
     });
   });
 </script>
-
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     var modal = document.getElementById('editUser');
@@ -284,5 +272,5 @@
       });
     });
   });
-  </script>
+</script>
 @endsection

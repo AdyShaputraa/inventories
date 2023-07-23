@@ -68,12 +68,12 @@
           <div class="container">
             <div class="row input-group">
               <div class="col">
-                <input type="radio" name="status" class="btn-check" value="1" checked>
-                <label class="btn btn-outline-purple w-100">Aktif</label>
+                <input type="radio" name="status" class="btn-active-add-user" id="input-active" value="1">
+                <label class="btn btn-outline-purple w-100" id="label-input-active" for="input-active">Aktif</label>
               </div>
               <div class="col">
-                <input type="radio" name="status" class="btn-check" value="0">
-                <label class="btn btn-outline-purple w-100">Tidak Aktif</label>
+                <input type="radio" name="status" class="btn-active-add-user" id="input-not-active" value="0">
+                <label class="btn btn-outline-purple w-100" id="label-input-not-active" for="input-not-active">Tidak Aktif</label>
               </div>
             </div>
             @error('status')
@@ -93,6 +93,7 @@
     </div>
   </form>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
   function togglePasswordVisibility() {
     var passwordInput = document.getElementById("password");
@@ -119,4 +120,22 @@
       togglePassword.classList.remove("hide");
     }
   }
+
+  $(document).ready(function() {
+    $('.btn-active-add-user').hide();
+    $('.btn-active-add-user').on('change', function() {
+      $('#label-input-not-active, #label-input-active').addClass("btn-outline-purple");
+      if ($(this).val() == 1) {
+        $("#input-active").prop("checked", true);
+        $('#label-input-active').removeClass("btn-outline-purple");
+        $('#label-input-active').addClass("btn-purple");
+        $('#label-input-not-active').removeClass("btn-purple");
+      } else {
+        $("#input-not-active").prop("checked", true);
+        $('#label-input-not-active').removeClass("btn-outline-purple");
+        $('#label-input-not-active').addClass("btn-purple");
+        $('#label-input-active').removeClass("btn-purple");
+      }
+    });
+  });
 </script>
