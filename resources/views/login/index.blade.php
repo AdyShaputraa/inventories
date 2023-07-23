@@ -19,13 +19,13 @@
         </div>
         <div class="col-sm-6 mx-auto">
           <div class="">
-            @if (\Session::has('success'))
-              <div class="alert alert-success alert-dismissible fade show" role="alert">
-                {{ session('success') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-              </div>
+            @if (session()->has('error'))
+              <br>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  {{ session('error') }}
+                </div>
+              <br>
             @endif
-
             @if ($errors->any())
               <br>
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">

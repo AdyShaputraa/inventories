@@ -21,22 +21,22 @@ class LoginController extends Controller {
         return $this->guard()->attempt($this->credentials($request), $remember);
     }
 
-    public function authenticate(Request $request){
-        $credentials = $request->validate([
-            'username'=>'required',
-            'password'=> 'required'
-        ]);
-        $remember = $request->has('remember');
-        
-        if (Auth::attempt($credentials, $remember)) {
-            $request->session()->regenerate();
-            return redirect()->intended('/dashboard');
-        } else {
-            return redirect()->back()->withInput()->withErrors([
-                'username' => 'Invalid credentials',
-            ]);
+    public function authenticate(Request $request) {
+        try {
+            $credentials = $request->validate([ 'username'=>'required', 'password'=> 'required' ]);
+            $remember = $request->has('remember');
+            if (Auth::attempt($credentials, $remember)) {
+                $user = Auth::getLastAttempted();
+                $request->session()->regenerate();
+                return redirect()->intended('/dashboard');
+            } else {
+                return redirect()->back()->withInput()->withErrors([
+                    'username' => 'Invalid credentials',
+                ]);
+            }
+        } catch (Exception $e) {
+            return back()->with('error', $e->message);
         }
-        return back()->with('error', 'Authentication error');
     }
 
     public function ForgotPassword() {

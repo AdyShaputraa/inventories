@@ -24,7 +24,7 @@ class CheckBanned
 
             $request->session()->regenerateToken();
 
-            return redirect()->route('login')->with('error', 'Silahkan Hubungi Admin Untuk Mnegaktifkan akun.');
+            return redirect()->route('login')->with('error', 'Silahkan hubungi admin untuk mengaktifkan akun.');
 
     }
 
