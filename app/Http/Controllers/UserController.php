@@ -243,4 +243,16 @@ class UserController extends Controller
         
     
     }
+
+    public function uploadFileTemp(Request $request) {
+        try {
+            $file = $request->file('file');
+            $extention = $file->getClientOriginalExtension();
+            $filename = time().'.'.$extention;
+            $file->move('storage/',$filename);
+            return response()->json(['success' => 'Success Upload']);
+        } catch (Exception $e) {
+            return response()->json(['error' => 'Error Upload']);
+        }
+    }
 }

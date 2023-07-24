@@ -3,6 +3,7 @@
     @method('put')
     @csrf
     <div class="row">
+      <input type="hidden" name="id" class="id{{ $u->id }}" value="{{ $u->id }}">
       <div class="form-group">
         <label class="text-start mt-2 mb-2 fw-bold" >Nama Lengkap</label>
         <input type="text" name="nama_lengkap" class="form-control @error('nama_lengkap') is-invalid @enderror" placeholder="Example: Ardian Agustin" required value="{{ $u->nama_lengkap }}">
@@ -46,12 +47,12 @@
             <div class="row input-group">
               <input type="hidden" class="status_data" value="{{ $u->status; }}">
               <div class="col">
-                <input type="radio" name="status" class="btn-active-edit-user" id="edit-input-active" value="1">
-                <label class="btn btn-outline-purple w-100" id="label-edit-input-active" for="edit-input-active">Aktif</label>
+                <input type="radio" name="status" class="btn-active-edit-user" id="edit-input-active{{ $u->id }}" data-id="{{ $u->id }}" value="1" {{ $u->status == 1 ? 'checked' : '' }}>
+                <label class="btn {{ $u->status == 1 ? 'btn-purple' : 'btn-outline-purple' }} w-100" id="label-edit-input-active{{ $u->id }}" for="edit-input-active{{ $u->id }}">Aktif</label>
               </div>
               <div class="col">
-                <input type="radio" name="status" class="btn-active-edit-user" id="edit-input-not-active" value="0">
-                <label class="btn btn-outline-purple w-100" id="label-edit-input-not-active" for="edit-input-not-active">Tidak Aktif</label>
+                <input type="radio" name="status" class="btn-active-edit-user" id="edit-input-not-active{{ $u->id }}" data-id="{{ $u->id }}" value="0" {{ $u->status == 0 ? 'checked' : '' }}>
+                <label class="btn {{ $u->status == 0 ? 'btn-purple' : 'btn-outline-purple' }} w-100" id="label-edit-input-not-active{{ $u->id }}" for="edit-input-not-active{{ $u->id }}">Tidak Aktif</label>
               </div>
             </div>
             @error('status')
@@ -71,37 +72,3 @@
     </div>
   </form>
 </div>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-  $(document).ready(function() {
-    $('.editUser').on('shown.bs.modal', function () {
-      if ($('.status_data').val() == 1) {
-        $("#edit-input-active").prop("checked", true);
-        $('#label-edit-input-active').removeClass("btn-outline-purple");
-        $('#label-edit-input-active').addClass("btn-purple");
-        $('#label-edit-input-not-active').removeClass("btn-purple");
-      } else {
-        $("#edit-input-not-active").prop("checked", true);
-        $('#label-edit-input-not-active').removeClass("btn-outline-purple");
-        $('#label-edit-input-not-active').addClass("btn-purple");
-        $('#label-edit-input-active').removeClass("btn-purple");
-      }
-    });
-
-    $('.btn-active-edit-user').hide();
-    $('.btn-active-edit-user').on('change', function() {
-      $('#label-edit-input-not-active, #label-edit-input-active').addClass("btn-outline-purple");
-      if ($(this).val() == 1) {
-        $("#edit-input-active").prop("checked", true);
-        $('#label-edit-input-active').removeClass("btn-outline-purple");
-        $('#label-edit-input-active').addClass("btn-purple");
-        $('#label-edit-input-not-active').removeClass("btn-purple");
-      } else {
-        $("#edit-input-not-active").prop("checked", true);
-        $('#label-edit-input-not-active').removeClass("btn-outline-purple");
-        $('#label-edit-input-not-active').addClass("btn-purple");
-        $('#label-edit-input-active').removeClass("btn-purple");
-      }
-    });
-  });
-</script>

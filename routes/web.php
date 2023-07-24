@@ -67,6 +67,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/user/filter', [UserController::class,'filter']);
     Route::get('/editpassword', [PasswordController::class,'edit'])->name('user.password.edit');
     Route::patch('/update', [PasswordController::class,'update'])->name('user.password.update');
+    Route::post('/user/upload', [UserController::class, 'uploadFileTemp']);
     Route::resource('/user', UserController::class);
 });
 

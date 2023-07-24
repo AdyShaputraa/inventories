@@ -1274,3 +1274,72 @@ ul.history-tracking li:last-child:before { height: 6px; }
 
 ul.nav-customs .active { background-color: plum; color: white; }
 ul.ui-autocomplete { margin-left: 362px; margin-top: 52px; }
+
+.progress-custom {
+  width: 110px;
+  height: 110px;
+  background: none;
+  position: relative;
+}
+
+.progress-custom::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 6px solid white;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.progress-custom>span {
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  z-index: 1;
+}
+
+.progress-custom .progress-left {
+  left: 0;
+}
+
+.progress-custom .progress-bar-custom {
+  width: 100%;
+  height: 100%;
+  background: none;
+  border-width: 6px;
+  border-style: solid;
+  position: absolute;
+  top: 0;
+}
+
+.progress-custom .progress-left .progress-bar-custom {
+  left: 100%;
+  border-top-right-radius: 80px;
+  border-bottom-right-radius: 80px;
+  border-left: 0;
+  -webkit-transform-origin: center left;
+  transform-origin: center left;
+}
+
+.progress-custom .progress-right {
+  right: 0;
+}
+
+.progress-custom .progress-right .progress-bar-custom {
+  left: -100%;
+  border-top-left-radius: 80px;
+  border-bottom-left-radius: 80px;
+  border-right: 0;
+  -webkit-transform-origin: center right;
+  transform-origin: center right;
+}
+
+.progress-custom .progress-value {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
